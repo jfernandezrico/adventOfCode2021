@@ -1,0 +1,12 @@
+{
+  "name": "adventOfCode2021",
+  "version": "1.0.0",
+  "description": "advent of code 2021 in ts",
+  "main": "index.js",
+  "repository": "https://github.com/jfernandezrico/adventOfCode2021.git",
+  "author": "jfernandezrico@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^16.11.11"
+  }
+}
