@@ -1,5 +1,5 @@
 import path from "path";
-import { readNumbersFromFile } from "../read-file";
+import { readNumbersFromFile } from "../shared/read-file";
 const depths = readNumbersFromFile(path.join(__dirname, "input.txt"));
 
 const result = depths.filter(
