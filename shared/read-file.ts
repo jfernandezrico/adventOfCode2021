@@ -23,4 +23,5 @@ export const readBitsFromFile = (path: string): Array<Array<boolean>> =>
     .readFileSync(path, "utf8")
     .toString()
     .split("\n")
+    .filter((n) => n)
     .map((line) => [...line].map((bit) => bit === "1"));

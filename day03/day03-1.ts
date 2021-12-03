@@ -1,5 +1,6 @@
 import path from "path";
 import { readBitsFromFile } from "../shared/read-file";
+import { bitsArray2Decimal } from "./shared";
 const bitMatrix = readBitsFromFile(path.join(__dirname, "input.txt"));
 
 const calculateGamma = (bitMatrix: Array<Array<boolean>>): Array<boolean> => {
@@ -14,9 +15,6 @@ const calculateGamma = (bitMatrix: Array<Array<boolean>>): Array<boolean> => {
     (positiveBitCount) => positiveBitCount > bitMatrix.length / 2
   );
 };
-
-const bitsArray2Decimal = (bitArray: Array<boolean>): number =>
-  parseInt(bitArray.map((bit) => (bit ? "1" : "0")).join(""), 2);
 
 const reverseBits = (bitArray: Array<boolean>): Array<boolean> =>
   bitArray.map((bit) => !bit);
