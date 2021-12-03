@@ -17,3 +17,10 @@ export const readMovementsFromFile = (path: string): Array<Movement> =>
       };
       return movement;
     });
+
+export const readBitsFromFile = (path: string): Array<Array<boolean>> =>
+  fs
+    .readFileSync(path, "utf8")
+    .toString()
+    .split("\n")
+    .map((line) => [...line].map((bit) => bit === "1"));
