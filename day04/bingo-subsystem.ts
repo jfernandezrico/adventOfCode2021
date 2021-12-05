@@ -20,6 +20,7 @@ export type BingoSubsystem = {
   randomNumbers: Array<number>;
   numberAppearances: NumberAppearanceRecord;
   boards: Array<Board>;
+  boardWinners: Set<number>;
 };
 
 export type GetBoardNumber = (
@@ -90,5 +91,6 @@ export const createBingoSubSystem = (
     randomNumbers,
     boards,
     numberAppearances: initializeNumberAppearanceRecord(boards),
+    boardWinners: new Set(),
   };
 };
