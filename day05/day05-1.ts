@@ -1,5 +1,6 @@
 import path from "path";
 import {
+    calculateTotalOverlaps,
   Diagram,
   greaterNumber,
   HydrothermalVentsSystem,
@@ -31,10 +32,5 @@ const calculateDiagram = (
   });
   return hydrothermalVentsSystem.diagram;
 };
-
-const sum = (previous: number, current: number): number => previous + current;
-
-const calculateTotalOverlaps = (diagram: Diagram): number =>
-  diagram.map((row) => row.filter((item) => item > 1).length).reduce(sum, 0);
 
 console.log(calculateTotalOverlaps(calculateDiagram(hydrothermalVentsSystem)));

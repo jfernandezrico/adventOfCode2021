@@ -15,18 +15,26 @@ export type HydrothermalVentsSystem = {
   diagram: Diagram;
 };
 
+export type Distance = {
+  begin: number;
+  end: number;
+};
+
 export const greaterNumber = (a: number, b: number) => (a > b ? a : b);
 
 export const lowerNumber = (a: number, b: number) => (a > b ? b : a);
 
 export const initializeHydrothermalVentsSystem = (
-  segments: Array<LineSegment>
+  segments: Array<LineSegment>,
+  removeDiagonals = true
 ): HydrothermalVentsSystem => {
-  const validSegments = segments.filter(
-    (segment) =>
-      segment.firstEnd.x === segment.lastEnd.x ||
-      segment.firstEnd.y === segment.lastEnd.y
-  );
+  const validSegments = removeDiagonals
+    ? segments.filter(
+        (segment) =>
+          segment.firstEnd.x === segment.lastEnd.x ||
+          segment.firstEnd.y === segment.lastEnd.y
+      )
+    : segments;
 
   const maxX =
     validSegments
@@ -41,4 +49,20 @@ export const initializeHydrothermalVentsSystem = (
     segments: validSegments,
     diagram: new Array(maxY).fill(0).map(() => new Array(maxX).fill(0)),
   };
+};
+
+const sum = (previous: number, current: number): number => previous + current;
+
+export const calculateTotalOverlaps = (diagram: Diagram): number =>
+  diagram.map((row) => row.filter((item) => item > 1).length).reduce(sum, 0);
+
+export const greatestDistance = (segment: LineSegment): Distance => {
+  const beginX = lowerNumber(segment.firstEnd.x, segment.lastEnd.x);
+  const endX = greaterNumber(segment.firstEnd.x, segment.lastEnd.x);
+  const beginY = lowerNumber(segment.firstEnd.y, segment.lastEnd.y);
+  const endY = greaterNumber(segment.firstEnd.y, segment.lastEnd.y);
+
+  return endX - beginX > endY - beginY
+    ? { begin: beginX, end: endX }
+    : { begin: beginY, end: endY };
 };
