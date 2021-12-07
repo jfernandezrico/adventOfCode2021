@@ -3,7 +3,7 @@ import { readHorizontalPositions } from "./read-file";
 
 const horizontalPositions = readHorizontalPositions(
   path.join(__dirname, "input.txt")
-).sort();
+);
 
 export const lowerNumber = (a: number, b: number) => (a > b ? b : a);
 
